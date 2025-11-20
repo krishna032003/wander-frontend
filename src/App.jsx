@@ -7,7 +7,7 @@ import { useTheme } from './ThemeContext';
 import Topbar from './Topbar';
 import Sidebar from './Sidebar';
 
-const API_BASE_URL = 'http://localhost:8000/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 export default function WanderGuideApp() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -321,12 +321,12 @@ export default function WanderGuideApp() {
   };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-slate-50 selection:bg-teal-100 dark:bg-slate-950 dark:selection:bg-teal-900 text-slate-900 dark:text-slate-50">
+    <div className="relative w-full min-h-screen overflow-hidden bg-slate-50 selection:bg-teal-100 dark:bg-slate-950 dark:selection:bg-teal-900 text-slate-900 dark:text-slate-50">
       <div className="absolute inset-0 z-[-1]">
         <img
           src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2074"
           alt="Background Texture"
-          className="w-full h-full object-cover opacity-40 mix-blend-luminosity"
+          className="object-cover w-full h-full opacity-40 mix-blend-luminosity"
         />
       </div>
       <div className="fixed inset-0 z-0 pointer-events-none">

@@ -39,7 +39,7 @@ export default function WanderGuideApp() {
 
   const checkServerHealth = async () => {
     try {
-      await fetch(`${API_BASE_URL}/health`);
+      await fetch(`${API_BASE_URL}/api/health`);
     } catch (error) {
       console.error('Server health check failed:', error);
     }
@@ -47,7 +47,7 @@ export default function WanderGuideApp() {
 
   const fetchCurrentLocation = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/location/current`);
+      const response = await fetch(`${API_BASE_URL}/api/location/current`);
       const data = await response.json();
       if (data.current_location) {
         setCurrentLocation(data.current_location);
@@ -60,7 +60,7 @@ export default function WanderGuideApp() {
   const fetchDocuments = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/documents/list`);
+      const response = await fetch(`${API_BASE_URL}/api/documents/list`);
       const data = await response.json();
       setDocuments(data.documents || []);
     } catch (error) {
@@ -79,7 +79,7 @@ export default function WanderGuideApp() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/chat`, {
+      const response = await fetch(`${API_BASE_URL}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -121,7 +121,7 @@ export default function WanderGuideApp() {
 
     setIsLoading(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/location/set`, {
+      const response = await fetch(`${API_BASE_URL}/api/location/set`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ location })
@@ -159,7 +159,7 @@ export default function WanderGuideApp() {
         formData.append('audio', audioBlob, 'recording.webm');
 
         try {
-          const response = await fetch(`${API_BASE_URL}/voice/transcribe`, {
+          const response = await fetch(`${API_BASE_URL}/api/voice/transcribe`, {
             method: 'POST',
             body: formData
           });
@@ -192,7 +192,7 @@ export default function WanderGuideApp() {
   const speakText = async (text) => {
     setIsSpeaking(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/voice/speak`, {
+      const response = await fetch(`${API_BASE_URL}/api/voice/speak`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text })
@@ -230,7 +230,7 @@ export default function WanderGuideApp() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/documents/upload`, {
+      const response = await fetch(`${API_BASE_URL}/api/documents/upload`, {
         method: 'POST',
         body: formData
       });
@@ -249,7 +249,7 @@ export default function WanderGuideApp() {
 
     setIsLoading(true);
     try {
-      await fetch(`${API_BASE_URL}/documents/delete/${filename}`, {
+      await fetch(`${API_BASE_URL}/api/documents/delete/${filename}`, {
         method: 'DELETE'
       });
       fetchDocuments();
@@ -263,7 +263,7 @@ export default function WanderGuideApp() {
   const refreshKnowledgeBase = async () => {
     setIsLoading(true);
     try {
-      await fetch(`${API_BASE_URL}/documents/refresh`, {
+      await fetch(`${API_BASE_URL}/api/documents/refresh`, {
         method: 'POST'
       });
       fetchDocuments();

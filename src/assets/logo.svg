@@ -1,0 +1,18 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="grad" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#2AFFD3"></stop>
+      <stop offset="100%" stop-color="#007A74"></stop>
+    </radialGradient>
+  </defs>
+
+  <!-- Outer glowing circle -->
+  <circle cx="64" cy="64" r="48" stroke="url(#grad)" stroke-width="6" opacity="0.9"></circle>
+
+  <!-- Compass needle -->
+  <path d="M64 24 L72 64 L64 104 L56 64 Z" fill="url(#grad)" opacity="0.9"></path>
+
+  <!-- Airplane silhouette inside -->
+  <path d="M64 44L68 60H76L66 66L70 84L64 76L58 84L62 66L52 60H60L64 44Z" fill="#ffffff" opacity="0.9"></path>
+
+</svg>
